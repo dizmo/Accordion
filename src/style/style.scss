@@ -2,26 +2,43 @@
   -apple-dashboard-region: dashboard-region(control rectangle);
 }
 
-html, body {
-  background-color: #f65b63;
+html {
   margin: 0px;
   padding: 0px;
   height: 100%;
   width: 100%;
 }
 
+body {
+  background-color: #f65b63;
+  height: calc(100% - 20px);
+  margin: 0;
+  padding: 10px;
+  width: calc(100% - 20px);
+}
+
 #front {
   background-color: #fae366;
   height: calc(100% - 20px);
-  margin: 10px;
+  margin: 0;
+  padding: 10px;
   width: calc(100% - 20px);
+
+  div.dizmo-accordion {
+    background-color: #f65b63;
+    height: calc(100% - 20px);
+    margin: 0;
+    padding: 10px;
+    width: calc(100% - 20px);
+  }
 }
 
 #back {
   display: none;
   background-color: #fae366;
   height: calc(100% - 20px);
-  margin: 10px;
+  margin: 0;
+  padding: 10px;
   width: calc(100% - 20px);
 
   .done-button-wrapper {
