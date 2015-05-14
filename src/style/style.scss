@@ -30,6 +30,30 @@ body {
     margin: 0;
     padding: 10px;
     width: calc(100% - 20px);
+
+    div.dizmo-accordion-panel:not([data-state=active]) {
+      border-top: 1px dotted #fae366;
+    }
+    div.dizmo-accordion-panel:not([data-state=active]):last-of-type {
+      border-bottom: 1px dotted #fae366;
+    }
+    div.dizmo-accordion-panel {
+      div.dizmo-accordion-panel-body {
+        background-color: #fae366;
+        div.dizmo-accordion-panel-body-content {
+          display: table;
+          height: 100%;
+          width: 100%;
+          div.number {
+            display: table-cell;
+            font-weight: bold;
+            font-size: 10em;
+            vertical-align: middle;
+            text-align: center;
+          }
+        }
+      }
+    }
   }
 }
 
