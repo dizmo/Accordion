@@ -31,12 +31,6 @@ body {
     padding: 10px;
     width: calc(100% - 20px);
 
-    div.dizmo-accordion-panel:not([data-state=active]) {
-      border-top: 1px dotted #fae366;
-    }
-    div.dizmo-accordion-panel:not([data-state=active]):last-of-type {
-      border-bottom: 1px dotted #fae366;
-    }
     div.dizmo-accordion-panel {
       div.dizmo-accordion-panel-body {
         background-color: #fae366;
@@ -53,6 +47,17 @@ body {
           }
         }
       }
+    }
+
+    div.dizmo-accordion-panel:not([data-state=active]):last-of-type {
+      border-bottom: 1px dotted #fae366;
+    }
+    div.dizmo-accordion-panel:not([data-state=active]) {
+      border-top: 1px dotted #fae366;
+      display: none;
+    }
+    div.dizmo-accordion-panel[data-state=active] {
+      border-top: 1px dotted #fae366;
     }
   }
 }
