@@ -48,6 +48,14 @@ Class("Accordion.Dizmo", {
                 dizmo.publicStorage.deleteProperty(path);
             },
 
+            getAttribute: function (key) {
+                return dizmo.getAttribute(key);
+            },
+
+            setAttribute: function (key, value) {
+                dizmo.setAttribute(key, value);
+            },
+
             getSize: function () {
                 return dizmo.getSize();
             },
