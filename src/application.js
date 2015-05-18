@@ -10,8 +10,8 @@ function showFront() {
 
 var events = {};
 window.document.addEventListener('dizmoready', function () {
-    $acc = DizmoElements('.dizmo-accordion');
-    $p1 = jQuery('#P01'); $p2 = jQuery('#P02');
+    $ACC = DizmoElements('.dizmo-accordion');
+    $P1 = jQuery('#P01'); $P2 = jQuery('#P02');
 
     MAIN = new Accordion.Main();
 });
