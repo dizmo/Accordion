@@ -12,13 +12,17 @@ Class("Accordion.Main", {
 
     after: {
         initialize: function () {
-            this.dizmo.my.setAttribute('settings/framecolor', '#fffae366');
+            var color = this.dizmo.my.getAttribute('settings/framecolor');
+            if (color === '#ffe6e6e6') this.dizmo.my.setAttribute(
+                'settings/framecolor', '#ffe5e5e5'
+            );
 
             $ACC = DizmoElements('.dizmo-accordion');
-            $P1 = jQuery('#P01'); $P2 = jQuery('#P02');
-            $P3 = jQuery('#P03'); $P4 = jQuery('#P04');
-            $P5 = jQuery('#P05'); $P6 = jQuery('#P06');
-            $P7 = jQuery('#P07'); $P8 = jQuery('#P08');
+            $P0 = jQuery('#P01'); $P1 = jQuery('#P02');
+            $P2 = jQuery('#P03'); $P3 = jQuery('#P04');
+            $P4 = jQuery('#P05'); $P5 = jQuery('#P06');
+            $P6 = jQuery('#P07'); $P7 = jQuery('#P08');
+            $P8 = jQuery('#P09'); $P9 = jQuery('#P10');
 
             this.initEvents();
         }
