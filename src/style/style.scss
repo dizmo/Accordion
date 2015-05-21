@@ -32,12 +32,17 @@ body {
         .dizmo-accordion-panel-body {
           .dizmo-accordion-panel-body-content {
             display: table;
-            .number {
+            div {
               display: table-cell;
-              font-weight: bold;
-              font-size: 10em;
               vertical-align: middle;
               text-align: center;
+              span {
+                font-size: 10em;
+                font-weight: bold;
+              }
+              p:hover {
+                text-decoration: underline;
+              }
             }
           }
         }
