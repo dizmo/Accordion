@@ -93,7 +93,7 @@ Class("Accordion.Main", {
                 console.debug('[ON:BEF/HIDE-2]', jQuery(ev.target));
             });
             $panels.on('after-hide', function (ev) {
-                console.debug('[ON:AFT/HIDE]-3', jQuery(ev.target));
+                console.debug('[ON:AFT/HIDE-3]', jQuery(ev.target));
             });
 
             // accordion -- click handlers: next-switch between unlisted
