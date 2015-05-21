@@ -64,7 +64,6 @@ Class("Accordion.Main", {
                 //
 
                 do_show($target);
-
             });
             $panels.on('before-show', function (ev) {
                 console.debug('[ON:BEF/SHOW-2]', jQuery(ev.target));
