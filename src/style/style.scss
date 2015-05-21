@@ -38,13 +38,10 @@ body {
           }
         }
       }
-      .dizmo-accordion-panel:not([data-state=active]):last-of-type
-      .dizmo-accordion-panel-header {
-        border-bottom: 1px solid dimgrey;
-      }
-      .dizmo-accordion-panel
-      .dizmo-accordion-panel-header{
-        border-top: 1px solid dimgrey;
+      .dizmo-accordion-panel {
+        .dizmo-accordion-panel-header {
+          border-top: 1px solid dimgrey;
+        }
       }
     }
     .iScrollVerticalScrollbar {

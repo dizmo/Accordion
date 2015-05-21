@@ -17,12 +17,22 @@ Class("Accordion.Main", {
                 'settings/framecolor', '#ffe5e5e5'
             );
 
-            $ACC = DizmoElements('.dizmo-accordion');
-            $P0 = jQuery('#P01'); $P1 = jQuery('#P02');
-            $P2 = jQuery('#P03'); $P3 = jQuery('#P04');
-            $P4 = jQuery('#P05'); $P5 = jQuery('#P06');
-            $P6 = jQuery('#P07'); $P7 = jQuery('#P08');
-            $P8 = jQuery('#P09'); $P9 = jQuery('#P10');
+            var $acc = jQuery('.dizmo-accordion');
+            $P0 = $acc.find('.dizmo-accordion-panel:nth(0)');
+            $P1 = $acc.find('.dizmo-accordion-panel:nth(1)');
+            $P2 = $acc.find('.dizmo-accordion-panel:nth(2)');
+            $P3 = $acc.find('.dizmo-accordion-panel:nth(3)');
+            $P4 = $acc.find('.dizmo-accordion-panel:nth(4)');
+            $P5 = $acc.find('.dizmo-accordion-panel:nth(5)');
+            $P6 = $acc.find('.dizmo-accordion-panel:nth(6)');
+            $P7 = $acc.find('.dizmo-accordion-panel:nth(7)');
+            $P8 = $acc.find('.dizmo-accordion-panel:nth(8)');
+            $P9 = $acc.find('.dizmo-accordion-panel:nth(9)');
+
+            $PA = $acc.find('.dizmo-accordion-panel:nth(10)');
+            $PB = $acc.find('.dizmo-accordion-panel:nth(11)');
+            $PC = $acc.find('.dizmo-accordion-panel:nth(12)');
+            $ACC = DizmoElements($acc);
 
             this.initEvents();
         }
