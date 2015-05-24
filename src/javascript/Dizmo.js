@@ -1,5 +1,14 @@
 //= require Assert
 
+/**
+ * @class The custom wrapper around the provided dizmo API
+ *
+ * @description
+ * This class serves as a basis for a custom wrapper around the dizmo API: It
+ * should be extended by the developer and can be used as a reference as to how
+ * an interaction with the API could work out. Some basic events have already
+ * been implemented and can be used.
+ */
 Class("Accordion.Dizmo", {
     my: {
         methods: {
@@ -24,9 +33,7 @@ Class("Accordion.Dizmo", {
             },
 
             setTitle: function (value) {
-                if (typeof value === 'string') {
-                    dizmo.setAttribute('settings/title', value);
-                }
+                dizmo.setAttribute('settings/title', value);
             },
 
             publish: function (path, value) {
