@@ -25,7 +25,7 @@ Structure: HTML
     <ul class='dizmo-accordion-panels'>
         <!-- listed panels: shown in accordion list -->
 
-        <li class='dizmo-accordion-panel'>
+        <li class='dizmo-accordion-panel' id='0'>
             <div class='dizmo-accordion-panel-header'>
                 <div class='dizmo-accordion-panel-header-content'>
                     <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
@@ -43,7 +43,7 @@ Structure: HTML
             </div>
         </li>
 
-        <li class='dizmo-accordion-panel' data-state='active'>
+        <li class='dizmo-accordion-panel' id='1' data-state='active'>
             <div class='dizmo-accordion-panel-header'>
                 <div class='dizmo-accordion-panel-header-content'>
                     <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
@@ -61,9 +61,9 @@ Structure: HTML
             </div>
         </li>
 
-        <li class='dizmo-accordion-panel'>...</li
+        <li class='dizmo-accordion-panel' id='?'>...</li
 
-        <li class='dizmo-accordion-panel'>
+        <li class='dizmo-accordion-panel' id='9'>
             <div class='dizmo-accordion-panel-header'>
                 <div class='dizmo-accordion-panel-header-content'>
                     <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
@@ -103,7 +103,7 @@ Structure: Unlisted panels
 
         <!-- listed panels: shown in accordion list -->
 
-        <li class='dizmo-accordion-panel'>...</li>
+        <li class='dizmo-accordion-panel' id='?'>...</li>
 
         <!-- unlisted panels: not shown in accordion list -->
 
