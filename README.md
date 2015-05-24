@@ -47,11 +47,11 @@ Structure: HTML
             <div class='dizmo-accordion-panel-header'>
                 <div class='dizmo-accordion-panel-header-content'>
                     <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL 0</span>
+                    <span class='dizmo-accordion-panel-header-text'>PANEL 1</span>
                 </div>
                 <div class='dizmo-accordion-panel-header-content active'>
                     <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL 0 [active]</span>
+                    <span class='dizmo-accordion-panel-header-text'>PANEL 1 [active]</span>
                 </div>
             </div>
             <div class='dizmo-accordion-panel-body'>
@@ -71,7 +71,7 @@ Structure: HTML
                 </div>
                 <div class='dizmo-accordion-panel-header-content active'>
                     <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL i [active]</span>
+                    <span class='dizmo-accordion-panel-header-text'>PANEL 9 [active]</span>
                 </div>
             </div>
             <div class='dizmo-accordion-panel-body'>
@@ -123,16 +123,16 @@ Structure: Unlisted panels
 
         <li class='dizmo-accordion-panel unlisted' id='b'>...</li>
 
-        <li class='dizmo-accordion-panel unlisted' id='c'>
+        <li class='dizmo-accordion-panel unlisted' id='z'>
             <div class='dizmo-accordion-panel-header'>
                 <div class='dizmo-accordion-panel-header-content active'>
                     <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL C [active]</span>
+                    <span class='dizmo-accordion-panel-header-text'>PANEL Z [active]</span>
                 </div>
             </div>
             <div class='dizmo-accordion-panel-body'>
                 <div class='dizmo-accordion-panel-body-content'>
-                    <div><span>C</span><p></p></div>
+                    <div><span>Z</span><p></p></div>
                 </div>
             </div>
         </li>
