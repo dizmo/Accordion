@@ -241,6 +241,11 @@ As you see the body margin of the accordion panels has been removed. Since the
 looks looks almost the same (except a slightly different gray for the scrollbar
 bord) it has not been shown again.
 
+**BTW:** If you wonder where the red color of the accordion has been set, it has
+not been set! Since no background color has been defined, it is by default
+transparent; further, since the dizmo itself has a red color (manually set at
+the time when the screen shots were taken) the accordion appears also red.
+
 API: JavaScript
 ---------------
 
