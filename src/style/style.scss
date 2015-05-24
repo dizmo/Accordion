@@ -26,14 +26,10 @@ html, body {
           border-top: 1px solid dimgrey; /* default: none */
         }
         .dizmo-accordion-panel-body {
-          height: calc(100% - 20px - 48px); /* alternative: 100% */
-          margin: 0 10px 10px; /* alternative: 0 */
-          width: calc(100% - 20px); /* alternative: 100% */
-          .dizmo-accordion-panel-body-content {
-            /**
-             * The panel content is completely custom and is therefore required
-             * to be adapted (for each panel separately -- if necessary):
-             */
+          height: calc(100% - 20px - 48px);     /* alt: omit --> 100% */
+          margin: 0 10px 10px;                  /*      omit --> 0    */
+          width: calc(100% - 20px);             /*      omit --> 100% */
+          .dizmo-accordion-panel-body-content { /*** CUSTOM CONTENT ***/
             display: table;
             div {
               display: table-cell;
