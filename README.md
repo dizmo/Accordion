@@ -90,9 +90,9 @@ As you see the structure is straight forward: Each panel has an `header` and a
 each header `content` has an `icon` and a `text`. Finally, each `body` as a
 `content` which can be filled a custom payload.
 
-Please note panel `#1` has `data-state='active'` causing the panel to be shown
-by default: without any such `data-state` set to `active` by default the list of
-all panels would be shown instead.
+Please note that panel `#1` has `data-state='active'` causing the panel to be
+shown by default: without any such `data-state` set to `active` by default the
+list of all panels would be shown instead.
 
 Structure: Unlisted panels
 --------------------------
@@ -121,7 +121,7 @@ Structure: Unlisted panels
             </div>
         </li>
 
-        <li class='dizmo-accordion-panel unlisted' id='b'>...</li>
+        <li class='dizmo-accordion-panel unlisted' id='?'>...</li>
 
         <li class='dizmo-accordion-panel unlisted' id='z'>
             <div class='dizmo-accordion-panel-header'>
@@ -149,9 +149,9 @@ Such *unlisted* panels become handy, to e.g. simulate panel nesting: create a
 *listed* panel, put a button in its content area, and wire the `click` event of
 the button with an activation of an unlisted panel -- that's it!
 
-Thea Accordion dizmo uses exactly that mechanism: within each listed panel there
-are three (same) unlisted panels #a, #b and #c. By clicking on the timestamp it
-is possible to cycle through them.
+Thea Accordion dizmo uses exactly this mechanism: within each listed panel there
+are three unlisted panels #a, #b and #c. By clicking on the timestamp it is
+possible to cycle through them.
 
 Styling: (S)CSS
 ---------------
@@ -196,7 +196,7 @@ div.dizmo-accordion {
 ```
 
 As you see the SCSS hierarchy reflects the HTML, with one exception: namely the
-scrollbar `.iScrollVerticalScrollbar`. Actually it is not required, but has been
+scrollbar `.iScrollVerticalScrollbar`. Actually, it is not required but has been
 shown here for demonstration purposes: You could simply omit it, and the
 scrollbar would still be rendered properly (albeit with a slightly different
 gray shading).
@@ -235,11 +235,11 @@ div.dizmo-accordion {
 }
 ```
 
-![preview](assets/accordion-panel-alt.png)
-
 As you see the body margin of the accordion panels has been removed. Since the
-looks looks almost the same (except a slightly different gray for the scrollbar
-bord) it has not been shown again.
+list looks is almost the same (except with a slightly different gray for the
+scrollbar border), it has not been shown again.
+
+![preview](assets/accordion-panel-alt.png)
 
 **BTW:** If you wonder where the red color of the accordion has been set, it has
 not been set! Since no background color has been defined, it is by default
@@ -250,7 +250,7 @@ API: JavaScript
 ---------------
 
 Toggling, showing and hiding panels is straight forward: Just call on the
-dizmoElements object the `daccordion(..)` funtion with the corresponding
+dizmoElements object the `daccordion(..)` function with the corresponding
 parameters:
 
 To toggle panel `#1` invoke:
@@ -271,45 +271,43 @@ To hide panel `#1` invoke:
 DizmoElements('.dizmo-accordion').daccordion('hide-panel', jQuery('#1'))
 ```
 
-The scrollbar of the list is also controllable:
-
-The create the scrollbar invoke:
+The scrollbar of the list is also controllable -- to create the scrollbar invoke:
 
 ```js
 DizmoElements('.dizmo-accordion').daccordion('scroll-create')
 ```
 
-The destroy the scrollbar invoke:
+To destroy the scrollbar invoke:
 
 ```js
 DizmoElements('.dizmo-accordion').daccordion('scroll-destroy')
 ```
 
-The update the scrollbar invoke:
+To update the scrollbar invoke:
 
 ```js
 DizmoElements('.dizmo-accordion').daccordion('scroll-update')
 ```
 
-Usually, these three invocation will not be required at all -- but it may make
-very much sense upon e.g. resizing the dizmo to destroy the scrollbar when a
-resizing operation starts, and then (re-)create it once resizing has been done.
+Usually, these three invocations will not be required at all -- but it may make
+very much sense upon e.g. resizing the dizmo to destroy the scrollbar when the
+resizing operation starts, and then (re-)create it once it has been done.
 
 API: Events
 -----------
 
 The accordion supports four different events: `before-show` and `after-show`
 plus `before-hide` and `after-hide`. You can subscribe to them to perform
-various tasks: E.g. check permission for a given panel in the `before-show`
-event handler; if no permission is provided don't show it -- here is a code
-snippet:
+various tasks: E.g. check permission(s) for a given panel in the `before-show`
+event handler; if no authorization has been provided don't show it -- here is a
+corresponding code snippet:
 
 ```js
 $panels.on('before-show', function (ev, do_show) {
     var $target = jQuery(ev.target);
     console.debug('[ON:BEFORE-SHOW]', $target);
 
-    if (this.permission_1) do_show($target);
+    if (this.authorized) do_show($target);
 }.bind(this);
 
 $panels.on('after-show', function (ev, do_show) {
@@ -322,7 +320,7 @@ $panels.on('before-hide', function (ev, do_hide) {
     var $target = jQuery(ev.target);
     console.debug('[ON:BEFORE-HIDE]', $target);
 
-    if (this.permission_2) do_hide($target);
+    if (this.authorized) do_hide($target);
 }.bind(this);
 
 $panels.on('after-hide', function (ev) {
