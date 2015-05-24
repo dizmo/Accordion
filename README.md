@@ -85,13 +85,13 @@ Structure: HTML
 </div>
 ```
 
-As you see the structure is straight forward: Each panel has an `header` and a
+As you see the structure is straight forward: Each panel has a `header` and a
 `body`; each `header` has an `active content` and a (passive) `content` where
 each header `content` has an `icon` and a `text`. Finally, each `body` as a
-`content` which can be filled a custom payload.
+`content` which can be filled with a custom payload.
 
 Please note that panel `#1` has `data-state='active'` causing the panel to be
-shown by default: without any such `data-state` set to `active` by default the
+shown by default: without any such `data-state` set to `active`, by default the
 list of all panels would be shown instead.
 
 Structure: Unlisted panels
@@ -244,7 +244,7 @@ scrollbar border), it has not been shown again.
 **BTW:** If you wonder where the red color of the accordion has been set, it has
 not been set! Since no background color has been defined, it is by default
 transparent; further, since the dizmo itself has a red color (manually set at
-the time when the screen shots were taken) the accordion appears also red.
+the time when the screen shots were taken) the accordion appears also in red.
 
 API: JavaScript
 ---------------
@@ -329,5 +329,5 @@ $panels.on('after-hide', function (ev) {
 }.bind(this);
 ```
 
-By combining the event handlers with listed and/or unlisted panels you are able
-to create some very interesting dizmos based on the `daccordion(..)` feature.
+By combining the event handlers with listed and/or unlisted panels the accordion
+allows you to create some very interesting dizmos.
