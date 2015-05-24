@@ -1,6 +1,8 @@
 Accordion Dizmo
 ===============
 
+[![Join the chat at https://gitter.im/dizmo/accordion](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dizmo/accordion?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 The Accordion dizmo demonstrates how easy it is to use the accordion feature
 of dizmoElements. Let's have a look at a screen shot:
 
