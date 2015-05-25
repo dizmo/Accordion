@@ -91,12 +91,12 @@ Structure: HTML
 
 As you see the structure is straight forward: Each panel has a `header` and a
 `body`; each `header` has an `active content` and a (passive) `content` where
-each header `content` has an `icon` and a `text`. Finally, each `body` as a
+each header `content` has an `icon` and a `text`. Finally, each `body` has a
 `content` which can be filled with a custom payload.
 
-Please note that panel `#1` has `data-state='active'` causing the panel to be
+Please note, that panel `#1` has `data-state='active'` causing the panel to be
 shown by default: without any such `data-state` set to `active`, by default the
-list of all panels would be shown instead.
+list of all panels is shown instead.
 
 Structure: Unlisted panels
 --------------------------
@@ -154,7 +154,7 @@ Such *unlisted* panels become handy, to e.g. simulate panel nesting: create a
 *listed* panel, put a button in its content area, and wire the `click` event of
 the button with an activation of an unlisted panel -- that's it!
 
-Thea Accordion dizmo uses exactly this mechanism: within each listed panel there
+The Accordion dizmo uses exactly this mechanism: within each listed panel there
 are three unlisted panels #a, #b and #c. By clicking on the timestamp it is
 possible to cycle through them.
 
@@ -187,7 +187,6 @@ div.dizmo-accordion {
               text-decoration: underline;
             }
           }
-
         }
       }
     }
@@ -232,7 +231,6 @@ div.dizmo-accordion {
               text-decoration: underline;
             }
           }
-
         }
       }
     }
@@ -241,14 +239,14 @@ div.dizmo-accordion {
 ```
 
 As you see the body margin of the accordion panels has been removed. Since the
-list looks is almost the same (except with a slightly different gray for the
-scrollbar border), it has not been shown again.
+list looks almost the same as before, no corresponding screen shot has not is
+being shown.
 
 ![preview](assets/accordion-panel-alt.png)
 
-**BTW:** If you wonder where the red color of the accordion has been set, it has
-not been set! Since no background color has been defined, it is by default
-transparent; further, since the dizmo itself has a red color (manually set at
+**BTW:** If you wonder where the red color of the accordion has been set, it
+has not been! Since no background color has been defined, it is by default 
+transparent. Further, since the dizmo itself has a red color (manually set at
 the time when the screen shots were taken) the accordion appears also in red.
 
 API: JavaScript
@@ -296,7 +294,7 @@ DizmoElements('.dizmo-accordion').daccordion('scroll-update')
 
 Usually, these three invocations will not be required at all -- but it may make
 very much sense upon e.g. resizing the dizmo to destroy the scrollbar when the
-resizing operation starts, and then (re-)create it once it has been done.
+resizing operation starts, and then (re-)create it once resizing is done.
 
 API: Events
 -----------
@@ -334,5 +332,5 @@ $panels.on('after-hide', function (ev) {
 }.bind(this);
 ```
 
-By combining the event handlers with listed and/or unlisted panels the accordion
-allows you to create some very interesting dizmos.
+By combining the event handlers with the listed and/or unlisted panels the
+accordion allows you to create some very interesting and complex dizmos.
