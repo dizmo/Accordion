@@ -24,66 +24,68 @@ Structure: HTML
 
 ```html
 <div class='dizmo-accordion no-dizmo-drag' data-type='dizmo-accordion'>
-    <ul class='dizmo-accordion-panels'>
-        <!-- listed panels: shown in accordion list -->
+  <ul class='dizmo-accordion-panels'>
 
-        <li class='dizmo-accordion-panel' id='0'>
-            <div class='dizmo-accordion-panel-header'>
-                <div class='dizmo-accordion-panel-header-content'>
-                    <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL 0</span>
-                </div>
-                <div class='dizmo-accordion-panel-header-content active'>
-                    <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL 0 [active]</span>
-                </div>
-            </div>
-            <div class='dizmo-accordion-panel-body'>
-                <div class='dizmo-accordion-panel-body-content'>
-                    <div><span>0</span><p></p></div>
-                </div>
-            </div>
-        </li>
+    <!-- listed panels: shown in accordion list -->
 
-        <li class='dizmo-accordion-panel' id='1' data-state='active'>
-            <div class='dizmo-accordion-panel-header'>
-                <div class='dizmo-accordion-panel-header-content'>
-                    <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL 1</span>
-                </div>
-                <div class='dizmo-accordion-panel-header-content active'>
-                    <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL 1 [active]</span>
-                </div>
-            </div>
-            <div class='dizmo-accordion-panel-body'>
-                <div class='dizmo-accordion-panel-body-content'>
-                    <div><span>1</span><p></p></div>
-                </div>
-            </div>
-        </li>
+    <li class='dizmo-accordion-panel' id='0'>
+      <div class='dizmo-accordion-panel-header'>
+        <div class='dizmo-accordion-panel-header-content'>
+          <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
+          <span class='dizmo-accordion-panel-header-text'>PANEL 0</span>
+        </div>
+        <div class='dizmo-accordion-panel-header-content active'>
+          <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
+          <span class='dizmo-accordion-panel-header-text'>PANEL 0 [active]</span>
+        </div>
+      </div>
+      <div class='dizmo-accordion-panel-body'>
+        <div class='dizmo-accordion-panel-body-content'>
+          <div><span>0</span><p></p></div>
+        </div>
+      </div>
+    </li>
 
-        <li class='dizmo-accordion-panel' id='?'>...</li
+    <li class='dizmo-accordion-panel' id='1' data-state='active'>
+      <div class='dizmo-accordion-panel-header'>
+        <div class='dizmo-accordion-panel-header-content'>
+          <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
+          <span class='dizmo-accordion-panel-header-text'>PANEL 1</span>
+        </div>
+        <div class='dizmo-accordion-panel-header-content active'>
+          <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
+          <span class='dizmo-accordion-panel-header-text'>PANEL 1 [active]</span>
+        </div>
+      </div>
+      <div class='dizmo-accordion-panel-body'>
+        <div class='dizmo-accordion-panel-body-content'>
+          <div><span>1</span><p></p></div>
+        </div>
+      </div>
+    </li>
 
-        <li class='dizmo-accordion-panel' id='9'>
-            <div class='dizmo-accordion-panel-header'>
-                <div class='dizmo-accordion-panel-header-content'>
-                    <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL 9</span>
-                </div>
-                <div class='dizmo-accordion-panel-header-content active'>
-                    <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL 9 [active]</span>
-                </div>
-            </div>
-            <div class='dizmo-accordion-panel-body'>
-                <div class='dizmo-accordion-panel-body-content'>
-                    <div><span>9</span><p></p></div>
-                </div>
-            </div>
-        </li>
+    <li class='dizmo-accordion-panel'>...</li>
 
-    </ul>
+    <li class='dizmo-accordion-panel' id='9'>
+      <div class='dizmo-accordion-panel-header'>
+        <div class='dizmo-accordion-panel-header-content'>
+          <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
+          <span class='dizmo-accordion-panel-header-text'>PANEL 9</span>
+        </div>
+        <div class='dizmo-accordion-panel-header-content active'>
+          <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
+          <span
+              class='dizmo-accordion-panel-header-text'>PANEL 9 [active]</span>
+        </div>
+      </div>
+      <div class='dizmo-accordion-panel-body'>
+        <div class='dizmo-accordion-panel-body-content'>
+          <div><span>9</span><p></p></div>
+        </div>
+      </div>
+    </li>
+
+  </ul>
 </div>
 ```
 
@@ -101,45 +103,46 @@ Structure: Unlisted panels
 
 ```html
 <div class='dizmo-accordion no-dizmo-drag' data-type='dizmo-accordion'>
-    <ul class='dizmo-accordion-panels'>
+  <ul class='dizmo-accordion-panels'>
 
-        <!-- listed panels: shown in accordion list -->
+    <!-- listed panels: shown in accordion list -->
 
-        <li class='dizmo-accordion-panel' id='?'>...</li>
+    <li class='dizmo-accordion-panel'>...</li>
 
-        <!-- unlisted panels: not shown in accordion list -->
+    <!-- unlisted panels: not shown in accordion list -->
 
-        <li class='dizmo-accordion-panel unlisted' id='a'>
-            <div class='dizmo-accordion-panel-header'>
-                <div class='dizmo-accordion-panel-header-content active'>
-                    <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL A [active]</span>
-                </div>
-            </div>
-            <div class='dizmo-accordion-panel-body'>
-                <div class='dizmo-accordion-panel-body-content'>
-                    <div><span>A</span><p></p></div>
-                </div>
-            </div>
-        </li>
+    <li class='dizmo-accordion-panel unlisted' id='a'>
+      <div class='dizmo-accordion-panel-header'>
+        <div class='dizmo-accordion-panel-header-content active'>
+          <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
+          <span
+              class='dizmo-accordion-panel-header-text'>PANEL A [active]</span>
+        </div>
+      </div>
+      <div class='dizmo-accordion-panel-body'>
+        <div class='dizmo-accordion-panel-body-content'>
+          <div><span>A</span><p></p></div>
+        </div>
+      </div>
+    </li>
 
-        <li class='dizmo-accordion-panel unlisted' id='?'>...</li>
+    <li class='dizmo-accordion-panel unlisted'>...</li>
 
-        <li class='dizmo-accordion-panel unlisted' id='z'>
-            <div class='dizmo-accordion-panel-header'>
-                <div class='dizmo-accordion-panel-header-content active'>
-                    <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
-                    <span class='dizmo-accordion-panel-header-text'>PANEL Z [active]</span>
-                </div>
-            </div>
-            <div class='dizmo-accordion-panel-body'>
-                <div class='dizmo-accordion-panel-body-content'>
-                    <div><span>Z</span><p></p></div>
-                </div>
-            </div>
-        </li>
+    <li class='dizmo-accordion-panel unlisted' id='z'>
+      <div class='dizmo-accordion-panel-header'>
+        <div class='dizmo-accordion-panel-header-content active'>
+          <span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>
+          <span class='dizmo-accordion-panel-header-text'>PANEL Z [active]</span>
+        </div>
+      </div>
+      <div class='dizmo-accordion-panel-body'>
+        <div class='dizmo-accordion-panel-body-content'>
+          <div><span>Z</span><p></p></div>
+        </div>
+      </div>
+    </li>
 
-    </ul>
+  </ul>
 </div>
 ```
 
