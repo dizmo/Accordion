@@ -21,10 +21,6 @@ Class("Accordion.Main", {
          * (like initializing events).
          */
         initialize: function () {
-            var color = this.dizmo.my.getAttribute('settings/framecolor');
-            if (color === '#ffe6e6e6') this.dizmo.my.setAttribute(
-                'settings/framecolor', '#ffe5e5e5'
-            );
 
             //
             // jQuery object referencing the accordion element:
