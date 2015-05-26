@@ -155,7 +155,7 @@ Such *unlisted* panels become handy, to e.g. simulate panel nesting: create a
 the button with an activation of an unlisted panel -- that's it!
 
 The Accordion dizmo uses exactly this mechanism: within each listed panel there
-are three unlisted panels #a, #b and #c. By clicking on the timestamp it is
+are three unlisted panels `#a`, `#b` and `#c`. By clicking on the timestamp it is
 possible to cycle through them.
 
 Styling: (S)CSS
