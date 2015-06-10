@@ -28,5 +28,5 @@ var events = {};
  * within the inspector.
  */
 window.document.addEventListener('dizmoready', function () {
-    MAIN = new Accordion.Main();
+    window.MAIN = new Accordion.Main();
 });

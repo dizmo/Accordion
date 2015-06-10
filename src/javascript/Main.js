@@ -34,21 +34,21 @@ Class("Accordion.Main", {
             //
 
             // listed panels:
-            $P0 = $acc.find('li.dizmo-accordion-panel:nth(0)');
-            $P1 = $acc.find('li.dizmo-accordion-panel:nth(1)');
-            $P2 = $acc.find('li.dizmo-accordion-panel:nth(2)');
-            $P3 = $acc.find('li.dizmo-accordion-panel:nth(3)');
-            $P4 = $acc.find('li.dizmo-accordion-panel:nth(4)');
-            $P5 = $acc.find('li.dizmo-accordion-panel:nth(5)');
-            $P6 = $acc.find('li.dizmo-accordion-panel:nth(6)');
-            $P7 = $acc.find('li.dizmo-accordion-panel:nth(7)');
-            $P8 = $acc.find('li.dizmo-accordion-panel:nth(8)');
-            $P9 = $acc.find('li.dizmo-accordion-panel:nth(9)');
+            window.$P0 = $acc.find('li.dizmo-accordion-panel:nth(0)');
+            window.$P1 = $acc.find('li.dizmo-accordion-panel:nth(1)');
+            window.$P2 = $acc.find('li.dizmo-accordion-panel:nth(2)');
+            window.$P3 = $acc.find('li.dizmo-accordion-panel:nth(3)');
+            window.$P4 = $acc.find('li.dizmo-accordion-panel:nth(4)');
+            window.$P5 = $acc.find('li.dizmo-accordion-panel:nth(5)');
+            window.$P6 = $acc.find('li.dizmo-accordion-panel:nth(6)');
+            window.$P7 = $acc.find('li.dizmo-accordion-panel:nth(7)');
+            window.$P8 = $acc.find('li.dizmo-accordion-panel:nth(8)');
+            window.$P9 = $acc.find('li.dizmo-accordion-panel:nth(9)');
 
             // unlisted panels (hidden in the list):
-            $PA = $acc.find('li.dizmo-accordion-panel#a');
-            $PB = $acc.find('li.dizmo-accordion-panel#b');
-            $PC = $acc.find('li.dizmo-accordion-panel#c');
+            window.$PA = $acc.find('li.dizmo-accordion-panel#a');
+            window.$PB = $acc.find('li.dizmo-accordion-panel#b');
+            window.$PC = $acc.find('li.dizmo-accordion-panel#c');
 
             //
             // jQuery objects are required to be wrapped via `DizmoElements(..)`
@@ -56,7 +56,7 @@ Class("Accordion.Main", {
             // debugging proposes:
             //
 
-            $ACC = DizmoElements($acc);
+            window.$ACC = DizmoElements($acc);
 
             // initial update of timestamps (in all panels):
             this.updateTimestamp($acc.find('div > span + p'));
@@ -241,7 +241,7 @@ Class("Accordion.Main", {
          */
         getTimestamp: function (opts) {
             var prefix = opts && opts.prefix || '',
-                suffix = opts && opts.suffix ||'';
+                suffix = opts && opts.suffix || '';
 
             return prefix + new Date().toLocaleString() + suffix;
         }
