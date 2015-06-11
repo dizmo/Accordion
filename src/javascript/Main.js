@@ -23,14 +23,14 @@ Class("Accordion.Main", {
         initialize: function () {
 
             //
-            // jQuery object referencing the accordion element:
+            // DizmoElements object referencing the accordion element:
             //
 
-            var $acc = jQuery('div.dizmo-accordion');
+            var $acc = DizmoElements('div.dizmo-accordion');
 
             //
-            // global jQuery objects to be used for debugging purposes -- each
-            // line corresponds to a panel:
+            // global dizmoElements objects to be used for debugging purposes;
+            // each line corresponds to a panel:
             //
 
             // listed panels:
@@ -51,12 +51,10 @@ Class("Accordion.Main", {
             window.$PC = $acc.find('li.dizmo-accordion-panel#c');
 
             //
-            // jQuery objects are required to be wrapped via `DizmoElements(..)`
-            // to allow access to e.g. `$ACC.daccordion(..); again global for
-            // debugging proposes:
+            // global dizmoElements objects to be used for debugging purposes:
             //
 
-            window.$ACC = DizmoElements($acc);
+            window.$ACC = $acc;
 
             // initial update of timestamps (in all panels):
             this.updateTimestamp($acc.find('div > span + p'));
@@ -72,12 +70,12 @@ Class("Accordion.Main", {
          * are *custom* (and for demonstration purposes):
          */
         initEvents: function () {
-            var $done = jQuery('.done-button');
+            var $done = DizmoElements('.done-button');
             $done.on('click', function () {
                 Accordion.Dizmo.showFront();
             });
 
-            var $acc = jQuery('div.dizmo-accordion'),
+            var $acc = DizmoElements('div.dizmo-accordion'),
                 $panels = $acc.find('li.dizmo-accordion-panel');
 
             //
@@ -89,7 +87,7 @@ Class("Accordion.Main", {
             //
 
             $panels.on('before-show', function (ev, do_show) {
-                var $target = jQuery(ev.target);
+                var $target = DizmoElements(ev.target);
                 console.debug('[ON:BEF/SHOW-1]', $target);
 
                 //
@@ -107,10 +105,10 @@ Class("Accordion.Main", {
                 do_show($target);
             });
             $panels.on('before-show', function (ev) {
-                console.debug('[ON:BEF/SHOW-2]', jQuery(ev.target));
+                console.debug('[ON:BEF/SHOW-2]', DizmoElements(ev.target));
             });
             $panels.on('after-show', function (ev) {
-                var $target = jQuery(ev.target);
+                var $target = DizmoElements(ev.target);
                 console.debug('[ON:AFT/SHOW-3]', $target);
 
                 this.updateTimestamp($target.find('div > span + p'));
@@ -125,7 +123,7 @@ Class("Accordion.Main", {
             //
 
             $panels.on('before-hide', function (ev, do_hide) {
-                var $target = jQuery(ev.target);
+                var $target = DizmoElements(ev.target);
                 console.debug('[ON:BEF/HIDE-1]', $target);
 
                 //
@@ -138,10 +136,10 @@ Class("Accordion.Main", {
                 do_hide($target);
             });
             $panels.on('before-hide', function (ev) {
-                console.debug('[ON:BEF/HIDE-2]', jQuery(ev.target));
+                console.debug('[ON:BEF/HIDE-2]', DizmoElements(ev.target));
             });
             $panels.on('after-hide', function (ev) {
-                console.debug('[ON:AFT/HIDE-3]', jQuery(ev.target));
+                console.debug('[ON:AFT/HIDE-3]', DizmoElements(ev.target));
             });
 
             //
@@ -173,17 +171,18 @@ Class("Accordion.Main", {
                 $panel_c = $acc.find('li.dizmo-accordion-panel#c');
 
             $panel_n.find('div > span + p').on('click', function (ev) {
-                $panel_t = jQuery(ev.target).closest('li.dizmo-accordion-panel');
-                DizmoElements($acc).daccordion('toggle-panel', $panel_a);
+                $panel_t = DizmoElements(ev.target)
+                    .closest('li.dizmo-accordion-panel');
+                $acc.daccordion('toggle-panel', $panel_a);
             });
             $panel_a.find('div > span + p').on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_b);
+                $acc.daccordion('toggle-panel', $panel_b);
             });
             $panel_b.find('div > span + p').on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_c);
+                $acc.daccordion('toggle-panel', $panel_c);
             });
             $panel_c.find('div > span + p').on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_t);
+                $acc.daccordion('toggle-panel', $panel_t);
             });
 
             //
@@ -210,22 +209,22 @@ Class("Accordion.Main", {
                 $text_c = $panel_c.find('.dizmo-accordion-panel-header-text');
 
             $icon_a.on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_t);
+                $acc.daccordion('toggle-panel', $panel_t);
             });
             $text_a.on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_t);
+                $acc.daccordion('toggle-panel', $panel_t);
             });
             $icon_b.on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_a);
+                $acc.daccordion('toggle-panel', $panel_a);
             });
             $text_b.on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_a);
+                $acc.daccordion('toggle-panel', $panel_a);
             });
             $icon_c.on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_b);
+                $acc.daccordion('toggle-panel', $panel_b);
             });
             $text_c.on('click', function () {
-                DizmoElements($acc).daccordion('toggle-panel', $panel_b);
+                $acc.daccordion('toggle-panel', $panel_b);
             });
         },
 
