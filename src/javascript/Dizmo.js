@@ -138,7 +138,7 @@ Class("Accordion.Dizmo", {
         },
 
         setAttributes: function () {
-            dizmo.setAttribute('settings/usercontrols/allowresize', false);
+            dizmo.setAttribute('settings/usercontrols/allowresize', true);
         }
     }
 });
