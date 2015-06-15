@@ -39,8 +39,12 @@ html, body {
                 font-size: 10em;
                 font-weight: bold;
               }
-              p:hover {
+              p.timestamp:hover {
                 text-decoration: underline;
+              }
+              p.lorem-ipsum {
+                text-align: justify;
+                padding: 1em 2em;
               }
             }
           }
