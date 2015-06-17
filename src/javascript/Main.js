@@ -226,6 +226,38 @@ Class("Accordion.Main", {
             $text_c.on('click', function () {
                 $acc.daccordion('toggle-panel', $panel_b);
             });
+
+            //
+            // framecolor -- ensure colors with strong contrast w.r.t. frame
+            //
+
+            DizmoElements(events).on('settings/framecolor', function (ev, value) {
+                if (value.match(/^#ff[\w]{6}/) && !value.match(/[\w]{6}ff$/)) {
+                    value = value.replace('#ff', '#');
+                } else if (value.match(/[\w]{6}ff$/)) {
+                    value = value.slice(0, 7);
+                }
+
+                if (Colors.hex2bright(value)) {
+                    DizmoElements('#front')
+                        .css('color', 'black');
+                    DizmoElements('.dizmo-accordion-panel-header')
+                        .css('border-top-color', 'dimgrey');
+                    DizmoElements('.iScrollIndicator')
+                        .css('border-color', 'dimgrey');
+                } else {
+                    DizmoElements('#front')
+                        .css('color', 'white');
+                    DizmoElements('.dizmo-accordion-panel-header')
+                        .css('border-top-color', 'whitesmoke');
+                    DizmoElements('.iScrollIndicator')
+                        .css('border-color', 'whitesmoke');
+                }
+            });
+
+            DizmoElements(events).trigger('settings/framecolor', [
+                this.dizmo.my.getAttribute('settings/framecolor')
+            ]);
         },
 
         /**

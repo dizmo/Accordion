@@ -93,27 +93,31 @@ Class("Accordion.Dizmo", {
     methods: {
         initEvents: function () {
             dizmo.onShowBack(function () {
-                jQuery("#front").hide();
-                jQuery("#back").show();
-                jQuery(events).trigger('dizmo.turned', ['back']);
+                DizmoElements("#front").hide();
+                DizmoElements("#back").show();
+                DizmoElements(events).trigger('dizmo.turned', ['back']);
             });
 
             dizmo.onShowFront(function () {
-                jQuery("#back").hide();
-                jQuery("#front").show();
-                jQuery(events).trigger('dizmo.turned', ['front']);
+                DizmoElements("#back").hide();
+                DizmoElements("#front").show();
+                DizmoElements(events).trigger('dizmo.turned', ['front']);
             });
 
             dizmo.subscribeToAttribute('geometry/height', function () {
-                jQuery(events).trigger('dizmo.resized', [
+                DizmoElements(events).trigger('dizmo.resized', [
                     dizmo.getWidth(), dizmo.getHeight()
                 ]);
             });
 
             dizmo.subscribeToAttribute('geometry/width', function () {
-                jQuery(events).trigger('dizmo.resized', [
+                DizmoElements(events).trigger('dizmo.resized', [
                     dizmo.getWidth(), dizmo.getHeight()
                 ]);
+            });
+
+            dizmo.subscribeToAttribute('settings/framecolor', function (path, value) {
+                DizmoElements(events).trigger('settings/framecolor', [value]);
             });
 
             viewer.subscribeToAttribute('settings/displaymode', function (path, value) {
@@ -123,15 +127,15 @@ Class("Accordion.Dizmo", {
                     dizmo.setAttribute('state/framehidden', false);
                 }
 
-                jQuery(events).trigger('dizmo.onmodechanged', [value]);
+                DizmoElements(events).trigger('dizmo.onmodechanged', [value]);
             });
 
             dizmo.onDock(function () {
-                jQuery(events).trigger('dizmo.docked');
+                DizmoElements(events).trigger('dizmo.docked');
             });
 
             dizmo.onUndock(function () {
-                jQuery(events).trigger('dizmo.undocked');
+                DizmoElements(events).trigger('dizmo.undocked');
             });
 
             dizmo.canDock(false);
