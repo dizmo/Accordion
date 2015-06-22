@@ -22,8 +22,20 @@ html, body {
   div.dizmo-accordion {
     ul.dizmo-accordion-panels {
       li.dizmo-accordion-panel {
-        .dizmo-accordion-panel-header {
+        .dizmo-accordion-panel-header { /* CUSTOM HEADER */
           border-top: 1px solid dimgrey; /* default: none */
+          .pull-left {
+            float: left;
+          }
+          .pull-right {
+            float: right;
+          }
+          .dizmo-accordion-panel-header-button {
+            height: 32px;
+            margin: 8px 0;
+            padding: 0 0 0 2px;
+            width: 32px;
+          }
         }
         .dizmo-accordion-panel-body {
           height: calc(100% - 20px - 48px);     /* alt: omit --> 100% */

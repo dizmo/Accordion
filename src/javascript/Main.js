@@ -228,6 +228,18 @@ Class("Accordion.Main", {
             });
 
             //
+            // accordion -- click handler: for special toggle button(s)
+            //
+
+            var $button = $panels.find('.dizmo-accordion-panel-header-button');
+            $button.on('click', function (ev) {
+                var $target = DizmoElements(ev.target),
+                    $panel = $target.closest('.dizmo-accordion-panel');
+
+                $acc.daccordion('toggle-panel', $panel);
+            });
+
+            //
             // framecolor -- ensure colors with strong contrast w.r.t. frame
             //
 
