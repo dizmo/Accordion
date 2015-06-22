@@ -186,7 +186,7 @@ Class("Accordion.Main", {
             });
 
             //
-            // accordion -- click handlers: back-switch between unlisted:
+            // accordion -- click handlers; back-switch between unlisted:
             //
             // The unlisted panels offer also a back-switch in the header
             // section; as explained above due to a lack of relationship
@@ -228,7 +228,53 @@ Class("Accordion.Main", {
             });
 
             //
-            // accordion -- click handler: for special toggle button(s)
+            // accordion -- dynamic content; for panels #b and #c:
+            //
+            // It is recommended to use the `before-show` handler for dynamic
+            // content manipulation (to avoid the user seeing the content be-
+            // ing changed).
+            //
+            // However, due to the application logic using the `before-show`
+            // handler might not always be possible: In this case, the other
+            // `after-show` handler can be used (or any other timing mechanism
+            // you wish to employ).
+            //
+            // It is important to update the scroll mechanism of the panel's
+            // body by running `$acc.daccordion('scroll-update-body')` -- since
+            // otherwise, scrolling will not be properly (re-)initialized!
+            //
+
+            $panel_b.on('before-show', function (ev) {
+                var $target = DizmoElements(ev.target),
+                    $p = jQuery("<p class='lorem-ipsum'>"),
+                    $lipsum = $panel_a.find('p.lorem-ipsum');
+
+                $p.html($lipsum.text().replace('STATIC/A',
+                        'DYNAMIC/B <b>[' + new Date().toISOString() + ']</b>'));
+                $target.find('.dizmo-accordion-panel-body-content')
+                       .find('div').append($p);
+            });
+
+            $panel_c.on('after-show', function (ev) {
+                var $target = DizmoElements(ev.target),
+                    $p = jQuery("<p class='lorem-ipsum'>"),
+                    $lipsum = $panel_a.find('p.lorem-ipsum');
+
+                $p.html($lipsum.text().replace('STATIC/A',
+                        'DYNAMIC/C <b>[' + new Date().toISOString() + ']</b>'));
+                $target.find('.dizmo-accordion-panel-body-content')
+                       .find('div').append($p);
+
+                $acc.daccordion('scroll-update-body'); // required!
+            });
+
+            //
+            // accordion -- click handler; for special toggle button(s):
+            //
+            // The `dizmo-accordion-panel-header-icon` span tag has by default
+            // a toggle functionality associated with; in cases where a custom
+            // tag (like a button) is required the corresponding toggling needs
+            // to be wired manually!
             //
 
             var $button = $panels.find('.dizmo-accordion-panel-header-button');
@@ -240,7 +286,7 @@ Class("Accordion.Main", {
             });
 
             //
-            // framecolor -- ensure colors with strong contrast w.r.t. frame
+            // framecolor -- ensure colors with strong contrast w.r.t. frame:
             //
 
             DizmoElements(events).on('settings/framecolor', function (ev, value) {
