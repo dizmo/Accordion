@@ -292,6 +292,12 @@ To update the scrollbar invoke:
 DizmoElements('.dizmo-accordion').daccordion('scroll-update')
 ```
 
+To update the scrolling of the *content* invoke:
+
+```js
+DizmoElements('.dizmo-accordion').daccordion('scroll-update-content')
+```
+
 Usually, these three invocations will not be required at all -- but it may make
 very much sense upon e.g. resizing the dizmo to destroy the scrollbar when the
 resizing operation starts, and then (re-)create it once resizing is done.

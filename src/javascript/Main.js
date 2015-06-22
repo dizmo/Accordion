@@ -240,7 +240,7 @@ Class("Accordion.Main", {
             // you wish to employ).
             //
             // It is important to update the scroll mechanism of the panel's
-            // body by running `$acc.daccordion('scroll-update-body')` -- since
+            // content by running `$acc.daccordion('scroll-update-content')` --
             // otherwise, scrolling will not be properly (re-)initialized!
             //
 
@@ -265,7 +265,7 @@ Class("Accordion.Main", {
                 $target.find('.dizmo-accordion-panel-body-content')
                        .find('div').append($p);
 
-                $acc.daccordion('scroll-update-body'); // required!
+                $acc.daccordion('scroll-update-content'); // required!
             });
 
             //
