@@ -381,27 +381,27 @@ corresponding code snippet:
 
 ```js
 $panels.on('before-show', function (ev, do_show) {
-    var $target = jQuery(ev.target);
+    var $target = DizmoElements(ev.target);
     console.debug('[ON:BEFORE-SHOW]', $target);
 
     if (this.authorized) do_show($target);
 }.bind(this);
 
 $panels.on('after-show', function (ev, do_show) {
-    var $target = jQuery(ev.target);
+    var $target = DizmoElements(ev.target);
     console.debug('[ON:AFTER-SHOW]', $target);
 }.bind(this);
 
 
 $panels.on('before-hide', function (ev, do_hide) {
-    var $target = jQuery(ev.target);
+    var $target = DizmoElements(ev.target);
     console.debug('[ON:BEFORE-HIDE]', $target);
 
     if (this.authorized) do_hide($target);
 }.bind(this);
 
 $panels.on('after-hide', function (ev) {
-    var $target = jQuery(ev.target);
+    var $target = DizmoElements(ev.target);
     console.debug('[ON:AFTER-HIDE]', $target);
 }.bind(this);
 ```
