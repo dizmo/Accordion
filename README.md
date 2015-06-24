@@ -256,51 +256,119 @@ Toggling, showing and hiding panels is straight forward: Just call on the
 dizmoElements object the `daccordion(..)` function with the corresponding
 parameters:
 
-To toggle panel `#1` invoke:
+* To toggle a panel with ID `#1` invoke:
 
 ```js
-DizmoElements('.dizmo-accordion').daccordion('toggle-panel', jQuery('#1'))
+DizmoElements('.dizmo-accordion').daccordion('toggle-panel', DizmoElements('#1'))
 ```
 
-To show panel `#1` invoke:
+* To show a panel with ID `#1` invoke:
 
 ```js
-DizmoElements('.dizmo-accordion').daccordion('show-panel', jQuery('#1'))
+DizmoElements('.dizmo-accordion').daccordion('show-panel', DizmoElements('#1'))
 ```
 
-To hide panel `#1` invoke:
+* To hide a panel with ID `#1` invoke:
 
 ```js
-DizmoElements('.dizmo-accordion').daccordion('hide-panel', jQuery('#1'))
+DizmoElements('.dizmo-accordion').daccordion('hide-panel', DizmoElements('#1'))
 ```
 
-The scrollbar of the list is also controllable -- to create the scrollbar invoke:
+### Panel Insertion and Removal
 
+* To insert a panel at index `0` invoke:
+```js
+DizmoElements('.dizmo-accordion').daccordion('insert-panel', 0, $panel)
+```
+
+where `$panel` needs to be explicitly constructed, e.g.:
+```js
+var $panel = DizmoElements("<li class='dizmo-accordion-panel'>" +
+    "<div class='dizmo-accordion-panel-header'>" +
+        "<div class='dizmo-accordion-panel-header-content'>" +
+            "<span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>" +
+            "<span class='dizmo-accordion-panel-header-text'>Panel</span>" +
+        "</div>" +
+        "<div class='dizmo-accordion-panel-header-content active'>" +
+            "<span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>" +
+            "<span class='dizmo-accordion-panel-header-text'>Panel</span>" +
+        "</div>" +
+    "</div>" +
+    "<div class='dizmo-accordion-panel-body'>" +
+        "<div class='dizmo-accordion-panel-body-content'>#</div>" +
+    "</div>" +
+"</li>");
+```
+
+Constructing `$panel` from scratch allows you to change the default layout, and
+e.g. introduce a `button` tag -- in such a case it is important to wire the
+desired mechanism yourself!
+
+Instead of a self-constructed `$panel`, a map from CSS class names to HTML
+snippets can be provided. E.g. to achieve the same effect like the previous
+invocation, use:
+
+```js
+DizmoElements('.dizmo-accordion').daccordion('insert-panel', 0, {
+    '.dizmo-accordion-panel-header-text': 'Panel',
+    '.dizmo-accordion-panel-body-content': '#'
+});
+```
+
+Complex CSS class names can also be specified, e.g.:
+```
+.dizmo-accordion-panel-header-content:not(.active) .dizmo-accordion-panel-header-text
+```
+
+It is also possible to insert `unlisted` panels. Either use the `unlisted` class
+while constructing the panel, e.g.:
+```js
+var $panel = DizmoElements("<li class='dizmo-accordion-panel unlisted'>" + ...
+    "</div>" +
+"</li>");
+```
+
+Or add the `unlisted: true` option to the map, e.g.:
+```js
+DizmoElements('.dizmo-accordion').daccordion('insert-panel', 0, {
+    unlisted: true, ...
+});
+```
+
+* To remove a panel at index `0` invoke:
+```js
+DizmoElements('.dizmo-accordion').daccordion('remove-panel', 0);
+```
+
+If you provide an invalid index which does not correspond to a panel, then
+no panel will be removed.
+
+### Scrolling
+
+The scroll mechanism of the panel list is also controllable -- to create a
+scrollbar invoke:
 ```js
 DizmoElements('.dizmo-accordion').daccordion('scroll-create')
 ```
 
-To destroy the scrollbar invoke:
-
+* To destroy the scrollbar invoke:
 ```js
 DizmoElements('.dizmo-accordion').daccordion('scroll-destroy')
 ```
 
-To update the scrollbar invoke:
-
+* To update the scrollbar invoke:
 ```js
 DizmoElements('.dizmo-accordion').daccordion('scroll-update')
 ```
 
-To update the scrolling of the *content* invoke:
-
+* To update the scrolling of the *content* invoke:
 ```js
 DizmoElements('.dizmo-accordion').daccordion('scroll-update-content')
 ```
 
-Usually, these three invocations will not be required at all -- but it may make
-very much sense upon e.g. resizing the dizmo to destroy the scrollbar when the
-resizing operation starts, and then (re-)create it once resizing is done.
+Usually, these invocations will not be required at all -- but it may make very
+much sense upon e.g. resizing the dizmo to update the scrolling mechanism,
+so the scrollbar height is re-adjusted.
 
 API: Events
 -----------
