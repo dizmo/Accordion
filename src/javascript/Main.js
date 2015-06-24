@@ -344,7 +344,7 @@ Class("Accordion.Main", {
                     "</div>" +
                 "</li>";
 
-                var $panel = DizmoElements(tpl); $TPL = $panel;
+                var $panel = DizmoElements(tpl);
                 $panel.find('.dizmo-accordion-panel-header-content:not(.active)')
                       .find('.dizmo-accordion-panel-header-text')
                       .text('PANEL #');
