@@ -75,7 +75,7 @@ Class("Accordion.Main", {
                 Accordion.Dizmo.showFront();
             });
 
-            var $acc = DizmoElements('div.dizmo-accordion#acc-1'),
+            var $acc = DizmoElements('div.dizmo-accordion:first'),
                 $all_panels = $acc.find('>ul.dizmo-accordion-panels'),
                 $panels = $all_panels.find('>li.dizmo-accordion-panel');
 
