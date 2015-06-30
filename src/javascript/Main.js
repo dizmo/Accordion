@@ -75,8 +75,9 @@ Class("Accordion.Main", {
                 Accordion.Dizmo.showFront();
             });
 
-            var $acc = DizmoElements('div.dizmo-accordion'),
-                $panels = $acc.find('li.dizmo-accordion-panel');
+            var $acc = DizmoElements('div.dizmo-accordion#acc-1'),
+                $all_panels = $acc.find('>ul.dizmo-accordion-panels'),
+                $panels = $all_panels.find('>li.dizmo-accordion-panel');
 
             //
             // accordion -- before- and after-show handlers:
@@ -88,7 +89,7 @@ Class("Accordion.Main", {
 
             $panels.on('before-show', function (ev, do_show) {
                 var $target = DizmoElements(ev.target);
-                console.debug('[ON:BEF/SHOW-1]', $target);
+                console.debug('[ON:BEF/SHOW]', $target);
 
                 //
                 // If one or more `before-show` handlers are listening then
@@ -104,14 +105,21 @@ Class("Accordion.Main", {
 
                 do_show($target);
             });
-            $panels.on('before-show', function (ev) {
-                console.debug('[ON:BEF/SHOW-2]', DizmoElements(ev.target));
-            });
             $panels.on('after-show', function (ev) {
                 var $target = DizmoElements(ev.target);
-                console.debug('[ON:AFT/SHOW-3]', $target);
+                console.debug('[ON:AFT/SHOW]', $target);
 
-                this.updateTimestamp($target.find('div > span + p'));
+                //
+                // Update `timestamp` paragraph(s) with corresponding value:
+                //
+
+                this.updateTimestamp($target.find('p.timestamp'));
+
+                //
+                // Update *nested* accordion(s) scroll mechanism:
+                //
+
+                $target.find('.dizmo-accordion').daccordion('scroll-update');
             }.bind(this));
 
             //
@@ -124,7 +132,7 @@ Class("Accordion.Main", {
 
             $panels.on('before-hide', function (ev, do_hide) {
                 var $target = DizmoElements(ev.target);
-                console.debug('[ON:BEF/HIDE-1]', $target);
+                console.debug('[ON:BEF/HIDE]', $target);
 
                 //
                 // If one or more `before-hide` handlers are listening then
@@ -135,11 +143,8 @@ Class("Accordion.Main", {
 
                 do_hide($target);
             });
-            $panels.on('before-hide', function (ev) {
-                console.debug('[ON:BEF/HIDE-2]', DizmoElements(ev.target));
-            });
             $panels.on('after-hide', function (ev) {
-                console.debug('[ON:AFT/HIDE-3]', DizmoElements(ev.target));
+                console.debug('[ON:AFT/HIDE]', DizmoElements(ev.target));
             });
 
             //
@@ -164,24 +169,24 @@ Class("Accordion.Main", {
             //
 
             var $panel_t,
-                $panel_n = $acc.find('li.dizmo-accordion-panel' +
+                $panel_n = $all_panels.find('>li.dizmo-accordion-panel' +
                     ':not(#a):not(#b):not(#c)'),
-                $panel_a = $acc.find('li.dizmo-accordion-panel#a'),
-                $panel_b = $acc.find('li.dizmo-accordion-panel#b'),
-                $panel_c = $acc.find('li.dizmo-accordion-panel#c');
+                $panel_a = $all_panels.find('>li.dizmo-accordion-panel#a'),
+                $panel_b = $all_panels.find('>li.dizmo-accordion-panel#b'),
+                $panel_c = $all_panels.find('>li.dizmo-accordion-panel#c');
 
-            $panel_n.find('div > span + p').on('click', function (ev) {
+            $panel_n.find('p.timestamp').on('click', function (ev) {
                 $panel_t = DizmoElements(ev.target)
                     .closest('li.dizmo-accordion-panel');
                 $acc.daccordion('toggle-panel', $panel_a);
             });
-            $panel_a.find('div > span + p').on('click', function () {
+            $panel_a.find('p.timestamp').on('click', function () {
                 $acc.daccordion('toggle-panel', $panel_b);
             });
-            $panel_b.find('div > span + p').on('click', function () {
+            $panel_b.find('p.timestamp').on('click', function () {
                 $acc.daccordion('toggle-panel', $panel_c);
             });
-            $panel_c.find('div > span + p').on('click', function () {
+            $panel_c.find('p.timestamp').on('click', function () {
                 $acc.daccordion('toggle-panel', $panel_t);
             });
 
@@ -201,12 +206,30 @@ Class("Accordion.Main", {
             // have had *no* effect!
             //
 
-            var $icon_a = $panel_a.find('.dizmo-accordion-panel-header-icon'),
-                $text_a = $panel_a.find('.dizmo-accordion-panel-header-text'),
-                $icon_b = $panel_b.find('.dizmo-accordion-panel-header-icon'),
-                $text_b = $panel_b.find('.dizmo-accordion-panel-header-text'),
-                $icon_c = $panel_c.find('.dizmo-accordion-panel-header-icon'),
-                $text_c = $panel_c.find('.dizmo-accordion-panel-header-text');
+            var $icon_a = $panel_a
+                    .find('>.dizmo-accordion-panel-header')
+                    .find('>.dizmo-accordion-panel-header-content')
+                    .find('>.dizmo-accordion-panel-header-icon'),
+                $text_a = $panel_a
+                    .find('>.dizmo-accordion-panel-header')
+                    .find('>.dizmo-accordion-panel-header-content')
+                    .find('>.dizmo-accordion-panel-header-text'),
+                $icon_b = $panel_b
+                    .find('>.dizmo-accordion-panel-header')
+                    .find('>.dizmo-accordion-panel-header-content')
+                    .find('>.dizmo-accordion-panel-header-icon'),
+                $text_b = $panel_b
+                    .find('>.dizmo-accordion-panel-header')
+                    .find('>.dizmo-accordion-panel-header-content')
+                    .find('>.dizmo-accordion-panel-header-text'),
+                $icon_c = $panel_c
+                    .find('>.dizmo-accordion-panel-header')
+                    .find('>.dizmo-accordion-panel-header-content')
+                    .find('>.dizmo-accordion-panel-header-icon'),
+                $text_c = $panel_c
+                    .find('>.dizmo-accordion-panel-header')
+                    .find('>.dizmo-accordion-panel-header-content')
+                    .find('>.dizmo-accordion-panel-header-text');
 
             $icon_a.on('click', function () {
                 $acc.daccordion('toggle-panel', $panel_t);
@@ -251,8 +274,10 @@ Class("Accordion.Main", {
 
                 $p.html($lipsum.text().replace('STATIC/A',
                         'DYNAMIC/B <b>[' + new Date().toISOString() + ']</b>'));
-                $target.find('.dizmo-accordion-panel-body-content')
-                       .find('div').append($p);
+                $target
+                    .find('>.dizmo-accordion-panel-body')
+                    .find('>.dizmo-accordion-panel-body-content')
+                    .find('div').append($p);
             });
 
             $panel_c.on('after-show', function (ev) {
@@ -262,8 +287,10 @@ Class("Accordion.Main", {
 
                 $p.html($lipsum.text().replace('STATIC/A',
                         'DYNAMIC/C <b>[' + new Date().toISOString() + ']</b>'));
-                $target.find('.dizmo-accordion-panel-body-content')
-                       .find('div').append($p);
+                $target
+                    .find('>.dizmo-accordion-panel-body')
+                    .find('>.dizmo-accordion-panel-body-content')
+                    .find('div').append($p);
 
                 $acc.daccordion('scroll-update-content'); // required!
             });
@@ -277,7 +304,10 @@ Class("Accordion.Main", {
             // to be wired manually!
             //
 
-            var $toggle = $panels.find('.dizmo-accordion-panel-header-button.toggle');
+            var $toggle = $panels
+                .find('>.dizmo-accordion-panel-header')
+                .find('>.dizmo-accordion-panel-header-content')
+                .find('>.dizmo-accordion-panel-header-button.toggle');
             $toggle.on('click', function (ev) {
                 var $target = DizmoElements(ev.target),
                     $panel = $target.closest('.dizmo-accordion-panel');
@@ -306,7 +336,10 @@ Class("Accordion.Main", {
             // happens.
             //
 
-            var $plus_1 = $panels.find('.dizmo-accordion-panel-header-button.plus-1');
+            var $plus_1 = $panels
+                .find('>.dizmo-accordion-panel-header')
+                .find('>.dizmo-accordion-panel-header-content')
+                .find('>.dizmo-accordion-panel-header-button.plus-1');
             $plus_1.on('click', function (ev) {
                 var header_content = '.dizmo-accordion-panel-header-content',
                     body_content = '.dizmo-accordion-panel-body-content',
@@ -324,7 +357,10 @@ Class("Accordion.Main", {
                 $acc.daccordion('insert-panel', 1, opts);
             });
 
-            var $plus_2 = $panels.find('.dizmo-accordion-panel-header-button.plus-2');
+            var $plus_2 = $panels
+                .find('>.dizmo-accordion-panel-header')
+                .find('>.dizmo-accordion-panel-header-content')
+                .find('>.dizmo-accordion-panel-header-button.plus-2');
             $plus_2.on('click', function (ev) {
                 var tpl = "<li class='dizmo-accordion-panel'>" +
                     "<div class='dizmo-accordion-panel-header'>" +
@@ -345,20 +381,29 @@ Class("Accordion.Main", {
                 "</li>";
 
                 var $panel = DizmoElements(tpl);
-                $panel.find('.dizmo-accordion-panel-header-content:not(.active)')
-                      .find('.dizmo-accordion-panel-header-text')
-                      .text('PANEL #');
-                $panel.find('.dizmo-accordion-panel-header-content.active')
-                      .find('.dizmo-accordion-panel-header-text')
-                      .text('PANEL # [active]');
-                $panel.find('.dizmo-accordion-panel-body-content')
-                      .find('div').find('span')
-                      .text('#');
+                $panel
+                    .find('>.dizmo-accordion-panel-header')
+                    .find('>.dizmo-accordion-panel-header-content:not(.active)')
+                    .find('>.dizmo-accordion-panel-header-text')
+                    .text('PANEL #');
+                $panel
+                    .find('>.dizmo-accordion-panel-header')
+                    .find('>.dizmo-accordion-panel-header-content.active')
+                    .find('>.dizmo-accordion-panel-header-text')
+                    .text('PANEL # [active]');
+                $panel
+                    .find('>.dizmo-accordion-panel-body')
+                    .find('>.dizmo-accordion-panel-body-content')
+                    .find('div').find('span')
+                    .text('#');
 
                 $acc.daccordion('insert-panel', 2, $panel);
             });
 
-            var $minus = $panels.find('.dizmo-accordion-panel-header-button.minus');
+            var $minus = $panels
+                .find('>.dizmo-accordion-panel-header')
+                .find('>.dizmo-accordion-panel-header-content')
+                .find('>.dizmo-accordion-panel-header-button.minus');
             $minus.on('click', function (ev) {
                 $acc.daccordion('remove-panel', 1);
             });
