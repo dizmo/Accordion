@@ -346,7 +346,7 @@ no panel will be removed.
 ### Nesting
 
 Accordion panels can also be nested quite easily by just repeating analogous
-HTML in the `.dizmo-accordion-panel-body-content` section, e.g.:
+HTML in the `.dizmo-accordion-panel-body-content` section or a panel, e.g.:
 ```js
 <li class='dizmo-accordion-panel'>
     <div class='dizmo-accordion-panel-header'>..</div>
@@ -370,8 +370,8 @@ the content and modify the custom CSS (if any) accordingly - e.g.:
 ```
 
 The outer panel header(s) will remain visible if an inner panel is activated; if
-such behaviour is not desired it can be hidden using the corresponding handlers
-`before-show` and `before-hide` for the *inner* panels - e.g.:
+such behaviour is not desired the outer header(s) can be hidden using the
+handlers `before-show` and `before-hide` of the *inner* panels - e.g.:
 ```js
 var $nested_panels =
     DizmoElements('.nested').find('.dizmo-accordion-panel');
