@@ -343,6 +343,68 @@ DizmoElements('.dizmo-accordion').daccordion('remove-panel', 0);
 If you provide an invalid index which does not correspond to a panel, then
 no panel will be removed.
 
+### Nesting
+
+Accordion panels can also be nested quite easily by just repeating analogous
+HTML in the `.dizmo-accordion-panel-body-content` section, e.g.:
+```js
+<li class='dizmo-accordion-panel'>
+    <div class='dizmo-accordion-panel-header'>..</div>
+    <div class='dizmo-accordion-panel-body'>
+        <div class='dizmo-accordion-panel-body-content nested'>
+            <div class='dizmo-accordion no-dizmo-drag' data-type='dizmo-accordion'>
+                <ul class='dizmo-accordion-panels'>..</ul>
+            </div>
+        </div>
+    </div>
+</li>
+```
+
+It is important though to *not* apply any custom CSS to the content wrapping the
+nested accordion; this can for example be done by adding a `nested` CSS class to
+the content and modify the custom CSS (if any) accordingly - e.g.:
+```css
+.dizmo-accordion-panel-body-content:not(.nested) {
+    ..
+}
+```
+
+The outer panel header(s) will remain visible if an inner panel is activated; if
+such behaviour is not desired it can be hidden using the corresponding handlers
+`before-show` and `before-hide` for the *inner* panels - e.g.:
+```js
+var $nested_panels =
+    DizmoElements('.nested').find('.dizmo-accordion-panel');
+$nested_panels.on('before-show', function (ev, do_show) {
+    var $target = DizmoElements(ev.target);
+    console.debug('[ON:BEF/SHOW]', $target);
+
+    var $content = $target.closest('.nested'),
+        $panel = $content.closest('.dizmo-accordion-panel'),
+        $header = $panel.find('>.dizmo-accordion-panel-header'),
+        $body = $panel.find('>.dizmo-accordion-panel-body');
+
+    $body.css('height', '100%');
+    $header.slideUp('fast', function () {
+        do_show($target);
+    });
+});
+$nested_panels.on('before-hide', function (ev, do_hide) {
+    var $target = DizmoElements(ev.target);
+    console.debug('[ON:BEF/HIDE]', $target);
+
+    var $content = $target.closest('.nested'),
+        $panel = $content.closest('.dizmo-accordion-panel'),
+        $header = $panel.find('>.dizmo-accordion-panel-header'),
+        $body = $panel.find('>.dizmo-accordion-panel-body');
+
+    $header.slideDown('fast', function () {
+        $body.css('height', 'calc(100% - 48px)');
+        do_hide($target);
+    });
+});
+```
+
 ### Scrolling
 
 The scroll mechanism of the panel list is also controllable -- to create a

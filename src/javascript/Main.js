@@ -534,13 +534,14 @@ Class("Accordion.Main", {
             // panels.
             //
 
-            var $nested = DizmoElements('.nested').find('.dizmo-accordion-panel');
-            $nested.on('before-show', function (ev, do_show) {
+            var $nested_panels =
+                DizmoElements('.nested').find('.dizmo-accordion-panel');
+            $nested_panels.on('before-show', function (ev, do_show) {
                 var $target = DizmoElements(ev.target);
                 console.debug('[ON:BEF/SHOW]', $target);
 
-                var $nested = $target.closest('.nested'),
-                    $panel = $nested.closest('.dizmo-accordion-panel'),
+                var $content = $target.closest('.nested'),
+                    $panel = $content.closest('.dizmo-accordion-panel'),
                     $header = $panel.find('>.dizmo-accordion-panel-header'),
                     $body = $panel.find('>.dizmo-accordion-panel-body');
 
@@ -551,12 +552,12 @@ Class("Accordion.Main", {
                     do_show($target);
                 });
             });
-            $nested.on('before-hide', function (ev, do_hide) {
+            $nested_panels.on('before-hide', function (ev, do_hide) {
                 var $target = DizmoElements(ev.target);
                 console.debug('[ON:BEF/HIDE]', $target);
 
-                var $nested = $target.closest('.nested'),
-                    $panel = $nested.closest('.dizmo-accordion-panel'),
+                var $content = $target.closest('.nested'),
+                    $panel = $content.closest('.dizmo-accordion-panel'),
                     $header = $panel.find('>.dizmo-accordion-panel-header'),
                     $body = $panel.find('>.dizmo-accordion-panel-body');
 
