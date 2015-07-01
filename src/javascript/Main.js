@@ -331,9 +331,23 @@ Class("Accordion.Main", {
             // In the latter case, if you add custom elements (like buttons) do
             // not forget to wire the corresponding event handlers!
             //
-            // Finally by using `remove-panel` a panel can be removed at a given
+            // It is also possible to add a `nested` accordion dynamically! See
+            // `plus-3` and `plus-4` variations: whereas `plus-3` uses the CSS
+            // selectors to construct a new panel with a `nested` accordion, the
+            // last `plus-4` wraps an HTML snippet as a `DizmoElements` object.
+            //
+            // Further panels can be inserted to the `nested` accordion, but one
+            // has first to maek sure that is has been properly initialized by
+            // using the parameter-less `daccordion ()` function.
+            //
+            // Finally, via `remove-panel` a panel can be removed at a given
             // index (see `minus`); if no panel exists at the index then nothing
             // happens.
+            //
+
+            //
+            // $plus-1: insert a panel at index 1; in `opts` use CSS selectors
+            //          (with HTML snippets) to customize an internal template.
             //
 
             var $plus_1 = $panels
@@ -341,21 +355,25 @@ Class("Accordion.Main", {
                 .find('>.dizmo-accordion-panel-header-content')
                 .find('>.dizmo-accordion-panel-header-button.plus-1');
             $plus_1.on('click', function (ev) {
-                var header_content = '.dizmo-accordion-panel-header-content',
-                    body_content = '.dizmo-accordion-panel-body-content',
-                    not_active = ':not(.active)',
-                    active = '.active';
+                var h_content = '.dizmo-accordion-panel-header-content',
+                    b_content = '.dizmo-accordion-panel-body-content',
+                    active = '.active', not_active = ':not(.active)';
 
                 var text = '.dizmo-accordion-panel-header-text',
                     icon = '.dizmo-accordion-panel-header-icon';
 
-                var opts = {unlisted: false};
-                opts[header_content + not_active + ' ' + text] = 'PANEL ?';
-                opts[header_content + active + ' ' + text] = 'PANEL ? [active]';
-                opts[body_content] = "<div><span>?</span><p class='timestamp'></p></div>";
+                var opts = {unlisted: false}; // or 'unlisted'
+                opts[h_content + not_active + ' ' + text] = 'PANEL ?';
+                opts[h_content + active + ' ' + text] = 'PANEL ? [active]';
+                opts[b_content] = "<div><span>?</span><p class='timestamp'></p></div>";
 
                 $acc.daccordion('insert-panel', 1, opts);
             });
+
+            //
+            // $plus-2: insert a panel at index 2; *instead* `opts` use directly
+            //          a `$panel` which is created from a template.
+            //
 
             var $plus_2 = $panels
                 .find('>.dizmo-accordion-panel-header')
@@ -399,6 +417,92 @@ Class("Accordion.Main", {
 
                 $acc.daccordion('insert-panel', 2, $panel);
             });
+
+            //
+            // $plus-3: insert a panel at index 3; in `opts` use CSS selectors
+            //          (with HTML snippets) to customize an internal template.
+            //
+
+            var $plus_3 = $panels
+                .find('>.dizmo-accordion-panel-header')
+                .find('>.dizmo-accordion-panel-header-content')
+                .find('>.dizmo-accordion-panel-header-button.plus-3');
+            $plus_3.on('click', function (ev) {
+                var h_content = '.dizmo-accordion-panel-header-content',
+                    b_content = '.dizmo-accordion-panel-body-content',
+                    h_text = '.dizmo-accordion-panel-header-text';
+
+                var opts = {nested: 'nested'};
+                opts[h_content + ' ' + h_text] = 'PANEL $';
+                opts[b_content] =
+                    "<div class='dizmo-accordion no-dizmo-drag' data-type='dizmo-accordion'>" +
+                        "<ul class='dizmo-accordion-panels'></ul>" +
+                    "</div>";
+
+                $acc.daccordion('insert-panel', 3, opts);
+
+                var $sub_acc = $acc.find('.dizmo-accordion').daccordion(),
+                    sub_opts = {unlisted: false}; // or 'unlisted'
+
+                sub_opts[h_content + ' ' + h_text] = 'PANEL $';
+                sub_opts[b_content] = "<div><span>$</span><p class='timestamp'></p></div>";
+
+                $sub_acc.daccordion('insert-panel', 0, sub_opts);
+                $sub_acc.daccordion('insert-panel', 1, sub_opts);
+                $sub_acc.daccordion('insert-panel', 2, sub_opts);
+            });
+
+            //
+            // $plus-4: insert a panel at index 4; *instead* `opts` use directly
+            //          a `$panel` which is created from a template.
+            //
+
+            var $plus_4 = $panels
+                .find('>.dizmo-accordion-panel-header')
+                .find('>.dizmo-accordion-panel-header-content')
+                .find('>.dizmo-accordion-panel-header-button.plus-4');
+            $plus_4.on('click', function (ev) {
+                var tpl = "<li class='dizmo-accordion-panel'>" +
+                    "<div class='dizmo-accordion-panel-header'>" +
+                        "<div class='dizmo-accordion-panel-header-content'>" +
+                            "<span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>" +
+                            "<span class='dizmo-accordion-panel-header-text'>PANEL $</span>" +
+                        "</div>" +
+                        "<div class='dizmo-accordion-panel-header-content active'>" +
+                            "<span class='dizmo-accordion-panel-header-icon'>&nbsp;</span>" +
+                            "<span class='dizmo-accordion-panel-header-text'>PANEL $ [active]</span>" +
+                        "</div>" +
+                    "</div>" +
+                    "<div class='dizmo-accordion-panel-body'>" +
+                        "<div class='dizmo-accordion-panel-body-content nested'>" +
+                            "<div class='dizmo-accordion no-dizmo-drag' data-type='dizmo-accordion'>" +
+                                "<ul class='dizmo-accordion-panels'></ul>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>" +
+                "</li>";
+
+
+                $acc.daccordion('insert-panel', 4, DizmoElements(tpl));
+
+                var $sub_acc = $acc.find('.dizmo-accordion').daccordion(),
+                    sub_opts = {unlisted: false}; // or 'unlisted'
+
+                var h_content = '.dizmo-accordion-panel-header-content',
+                    b_content = '.dizmo-accordion-panel-body-content',
+                    h_text = '.dizmo-accordion-panel-header-text';
+
+                sub_opts[h_content + ' ' + h_text] = 'PANEL $';
+                sub_opts[b_content] = "<div><span>$</span><p class='timestamp'></p></div>";
+
+                $sub_acc.daccordion('insert-panel', 0, sub_opts);
+                $sub_acc.daccordion('insert-panel', 1, sub_opts);
+                $sub_acc.daccordion('insert-panel', 2, sub_opts);
+            });
+
+            //
+            // $minus: remove a panel at index 1.
+            //
 
             var $minus = $panels
                 .find('>.dizmo-accordion-panel-header')
