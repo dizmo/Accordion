@@ -439,11 +439,15 @@ Class("Accordion.Main", {
                         "<ul class='dizmo-accordion-panels'></ul>" +
                     "</div>";
 
-                $acc.daccordion('insert-panel', 3, opts);
+                var $panel = $acc
+                    .daccordion('insert-panel', 3, opts);
+                var $sub_acc = $panel
+                    .find('>.dizmo-accordion-panel-body')
+                    .find('>.dizmo-accordion-panel-body-content.nested')
+                    .find('> .dizmo-accordion')
+                    .daccordion(); // init!
 
-                var $sub_acc = $acc.find('.dizmo-accordion').daccordion(),
-                    sub_opts = {unlisted: false}; // or 'unlisted'
-
+                var sub_opts = {unlisted: false}; // or 'unlisted'
                 sub_opts[h_content + ' ' + h_text] = 'PANEL $';
                 sub_opts[b_content] = "<div><span>$</span><p class='timestamp'></p></div>";
 
@@ -482,16 +486,19 @@ Class("Accordion.Main", {
                     "</div>" +
                 "</li>";
 
-
-                $acc.daccordion('insert-panel', 4, DizmoElements(tpl));
-
-                var $sub_acc = $acc.find('.dizmo-accordion').daccordion(),
-                    sub_opts = {unlisted: false}; // or 'unlisted'
+                var $panel = $acc
+                    .daccordion('insert-panel', 4, DizmoElements(tpl));
+                var $sub_acc = $panel
+                    .find('>.dizmo-accordion-panel-body')
+                    .find('>.dizmo-accordion-panel-body-content.nested')
+                    .find('> .dizmo-accordion')
+                    .daccordion(); // init!
 
                 var h_content = '.dizmo-accordion-panel-header-content',
                     b_content = '.dizmo-accordion-panel-body-content',
                     h_text = '.dizmo-accordion-panel-header-text';
 
+                var sub_opts = {unlisted: false}; // or 'unlisted'
                 sub_opts[h_content + ' ' + h_text] = 'PANEL $';
                 sub_opts[b_content] = "<div><span>$</span><p class='timestamp'></p></div>";
 
@@ -520,6 +527,12 @@ Class("Accordion.Main", {
             // for `before-show` and `before-hide` events (of the *nested*
             // panels!) implement such a hide/show of the outer headers.
             //
+            // If you work with dynamic panels, ensure that the handlers are
+            // setup when they are actually created! Since `$nested` below
+            // contains *only* those panels which are in the static HTML, these
+            // handlers will not be invoked correspondingly for the dynamic
+            // panels.
+            //
 
             var $nested = DizmoElements('.nested').find('.dizmo-accordion-panel');
             $nested.on('before-show', function (ev, do_show) {
@@ -533,7 +546,7 @@ Class("Accordion.Main", {
 
                 $body.css('height', '100%');
                 $header.slideUp('fast', function () {
-                    do_show($target)
+                    do_show($target);
                 });
             });
             $nested.on('before-hide', function (ev, do_hide) {
@@ -547,7 +560,7 @@ Class("Accordion.Main", {
 
                 $header.slideDown('fast', function () {
                     $body.css('height', 'calc(100% - 48px)');
-                    do_hide($target)
+                    do_hide($target);
                 });
             });
 
