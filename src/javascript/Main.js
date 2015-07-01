@@ -513,6 +513,45 @@ Class("Accordion.Main", {
             });
 
             //
+            // $panels: toggle panel header when nested panel(s) toggle(s)
+            //
+            // By default the nested accordion panel headers *do not* hide the
+            // panels headers of the outer accordion. The following handlers
+            // for `before-show` and `before-hide` events (of the *nested*
+            // panels!) implement such a hide/show of the outer headers.
+            //
+
+            var $nested = DizmoElements('.nested').find('.dizmo-accordion-panel');
+            $nested.on('before-show', function (ev, do_show) {
+                var $target = DizmoElements(ev.target);
+                console.debug('[ON:BEF/SHOW]', $target);
+
+                var $nested = $target.closest('.nested'),
+                    $panel = $nested.closest('.dizmo-accordion-panel'),
+                    $header = $panel.find('>.dizmo-accordion-panel-header'),
+                    $body = $panel.find('>.dizmo-accordion-panel-body');
+
+                $body.css('height', '100%');
+                $header.slideUp('fast', function () {
+                    do_show($target)
+                });
+            });
+            $nested.on('before-hide', function (ev, do_hide) {
+                var $target = DizmoElements(ev.target);
+                console.debug('[ON:BEF/HIDE]', $target);
+
+                var $nested = $target.closest('.nested'),
+                    $panel = $nested.closest('.dizmo-accordion-panel'),
+                    $header = $panel.find('>.dizmo-accordion-panel-header'),
+                    $body = $panel.find('>.dizmo-accordion-panel-body');
+
+                $header.slideDown('fast', function () {
+                    $body.css('height', 'calc(100% - 48px)');
+                    do_hide($target)
+                });
+            });
+
+            //
             // framecolor -- ensure colors with strong contrast w.r.t. frame:
             //
 

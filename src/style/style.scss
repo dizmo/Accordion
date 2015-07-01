@@ -21,9 +21,13 @@ html, body {
 
   div.dizmo-accordion {
     ul.dizmo-accordion-panels {
-      li.dizmo-accordion-panel {
-        .dizmo-accordion-panel-header { // CUSTOM HEADER
+      li.dizmo-accordion-panel:not([data-state=active]):not(:first-of-type) {
+        .dizmo-accordion-panel-header {
           border-top: 1px solid dimgrey; // default: none
+        }
+      }
+      li.dizmo-accordion-panel {
+        .dizmo-accordion-panel-header {
           .pull-left {
             float: left;
           }
@@ -41,12 +45,12 @@ html, body {
           }
         }
         .dizmo-accordion-panel-body {
-
+          /*
           height: calc(100% - 20px - 48px); // alt: omit --> 100%
           margin: 0 10px 10px; // alt: omit --> 0
           width: calc(100% - 20px); // alt: omit --> 100%
-
-          .dizmo-accordion-panel-body-content:not(.nested) { // CUSTOM BODY
+          */
+          .dizmo-accordion-panel-body-content:not(.nested) {
             display: table;
             div {
               display: table-cell;
