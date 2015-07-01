@@ -545,6 +545,8 @@ Class("Accordion.Main", {
                     $body = $panel.find('>.dizmo-accordion-panel-body');
 
                 $body.css('height', '100%');
+             // $body.css('width', '100%');
+             // $body.css('margin', '0');
                 $header.slideUp('fast', function () {
                     do_show($target);
                 });
@@ -560,6 +562,9 @@ Class("Accordion.Main", {
 
                 $header.slideDown('fast', function () {
                     $body.css('height', 'calc(100% - 48px)');
+                 // $body.css('height', 'calc(100% - 20px - 48px)');
+                 // $body.css('width', 'calc(100% - 20px)');
+                 // $body.css('margin', '0 10px 10px');
                     do_hide($target);
                 });
             });
