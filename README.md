@@ -425,7 +425,7 @@ DizmoElements('.dizmo-accordion').daccordion('scroll-update')
 
 * To update the scrolling of the *content* invoke:
 ```js
-DizmoElements('.dizmo-accordion').daccordion('scroll-update-content')
+DizmoElements('.dizmo-accordion').daccordion('scroll2-update')
 ```
 
 Usually, these invocations will not be required at all -- but it may make very
