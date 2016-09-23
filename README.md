@@ -470,3 +470,4 @@ $panels.on('after-hide', function (ev) {
 
 By combining the event handlers with the listed and/or unlisted panels the
 accordion allows you to create some very interesting and complex dizmos.
+
